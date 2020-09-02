@@ -40,16 +40,20 @@ def getMV():
     ###############################################################
     bot = webdriver.Firefox()
     bot.get('https://manyvids.com/Login/')
+    print('loading login page')
     time.sleep(3)
     bot.find_element_by_id('triggerUsername').send_keys(onlyFans_username)
     bot.find_element_by_id('triggerPassword').send_keys(onlyFans_password)
     bot.find_element_by_id('loginAccountSubmit').click()
+    print('username and password entered')
     time.sleep(3)
     bot.get('https://manyvids.com/MV-Content-Manager/')
+    print('loading content manager page')
     time.sleep(3)
     pages = bot.find_elements_by_class_name('page-link')
+    print('Building Video Index, Please Wait')
     for page in pages:
-        print('there are ',len(pages), 'pages')
+        print('there are ',len(pages), 'pages of videos')
         drop_btn = bot.find_elements_by_xpath('//i[contains(@data-toggle,"dropdown")]')
         time.sleep(3)
         videos = bot.find_elements_by_class_name('manage-content__list-item')
@@ -57,7 +61,7 @@ def getMV():
             video_links=bot.find_elements_by_xpath('//a[contains(@title,"Edit your content")]')
         for vid_link in video_links:
             links.append(vid_link.get_attribute('href'))
-        print('Finished Loading Videos')
+        print('Finished Indexing Videos')
         
         bot.find_element_by_class_name('next').click()
     for i in links:
@@ -81,8 +85,9 @@ def getMV():
         stream_options[1].click()
         print('option changed to no')
         time.sleep(3)
+        print('Saving Chnages')
         bot.find_element_by_id('saveVideo').click()
         print('Video Updated, Moving to next video')
         time.sleep(5)
-        
+    print('all changes completed)
 getMV()
