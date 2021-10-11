@@ -19,8 +19,8 @@ from selenium.webdriver.support.ui import Select
 #############################################################################################
 
 
-onlyFans_username =
-onlyFans_password =
+manyvids_username =
+manyvids_password =
 
 
 
@@ -42,8 +42,8 @@ def getMV():
     bot.get('https://manyvids.com/Login/')
     print('loading login page')
     time.sleep(3)
-    bot.find_element_by_id('triggerUsername').send_keys(onlyFans_username)
-    bot.find_element_by_id('triggerPassword').send_keys(onlyFans_password)
+    bot.find_element_by_id('triggerUsername').send_keys(manyvids_username)
+    bot.find_element_by_id('triggerPassword').send_keys(manyvids_password)
     bot.find_element_by_id('loginAccountSubmit').click()
     print('username and password entered')
     time.sleep(3)
